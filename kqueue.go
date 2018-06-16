@@ -512,6 +512,9 @@ func read(kq int, events []unix.Kevent_t, timeout *unix.Timespec) ([]unix.Kevent
 	if err != nil {
 		return nil, err
 	}
+	if n > len(events) {
+		return events, nil
+	}
 	return events[0:n], nil
 }
 
